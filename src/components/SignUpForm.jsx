@@ -21,7 +21,7 @@ const SignUpForm = () => {
         console.log("SignUp", result);
         localStorage.setItem("token", result.data.token);
         //const token = localStorage.getItem("token");
-        navigate("/post");
+        navigate("/profile");
       } catch (error) {
         setError(error.message);
       }

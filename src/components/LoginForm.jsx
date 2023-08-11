@@ -22,7 +22,7 @@ const LoginForm = () => {
         console.log("Login", result);
         localStorage.setItem("token", result.data.token);
         //const token = localStorage.getItem("token");
-        navigate("/post");
+        navigate("/profile");
       } catch (error) {
         setError(error.message);
       }

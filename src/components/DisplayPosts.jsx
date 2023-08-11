@@ -45,19 +45,19 @@ const DisplayPosts = () => {
           <h3>{post.price}</h3>
           <h4>{post.author.username}</h4>
           <h6>{post._id}</h6>
+          {token &&   (
+            <button onClick={() => navigate(`/post`)}> View Post</button>
+          )}
           {token && post.isAuthor &&   (
-            <button onClick={() => navigate(`/${post._id}`)}>Edit</button>
+            <button onClick={() => navigate(`/${post._id}`)}>Test Edit</button>
           )}
           {token && post.isAuthor && (
-            <button onClick={() => handleDelete(post._id)}>Delete</button>
+            <button onClick={() => handleDelete(post._id)}>Test Delete</button>
           )}
           {token && !post.isAuthor && (
-            <div>
-            <button> View Post</button>
             <button onClick={() => handleMessage(post._id)}>
-              Leave Message Test
+              Test Message
             </button>
-            </div>
           )}
         </div>
       ))}

@@ -11,7 +11,7 @@ const EditPostForm = () => {
     try {
       const result = await updatePost(postId);
       console.log("Update", result);
-      navigate("/post");
+      navigate("/posts");
     } catch (error) {
       console.error(error);
     }

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import DisplayPosts from "./DisplayPosts";
 import Header from "./Header";
 
-const Post = () => {
+const Posts = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -26,4 +26,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Posts;
