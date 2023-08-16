@@ -5,16 +5,16 @@ import { deletePost, fetchPosts, postMessage } from "../API/main";
 const DisplayPosts = () => {
   const [posts, setPosts] = useState([]);
   const token = localStorage.getItem("token");
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getAllPosts() {
       const response = await fetchPosts();
       console.log("Posts", response);
-      if (response.success) {
-        setPosts(response.data.posts);
-      }
+      setPosts(response.data.posts);
     }
+
     getAllPosts();
   }, []);
 
@@ -35,10 +35,33 @@ const DisplayPosts = () => {
       console.error(error);
     }
   }
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const postMatches = (post, searchTerm) => {
+    const { title, description, price, author } = post;
+    const lowerCaseTerm = searchTerm.toLowerCase();
+    return (
+      title.toLowerCase().includes(lowerCaseTerm) ||
+      description.toLowerCase().includes(lowerCaseTerm) ||
+      price.toLowerCase().includes(lowerCaseTerm) ||
+      author.username.toLowerCase().includes(lowerCaseTerm)
+    );
+  };
+
+  const filteredPosts = posts.filter((post) => postMatches(post, searchTerm));
+  const postsToDisplay = searchTerm.length ? filteredPosts : posts;
 
   return (
     <div>
-      {posts.map((post) => (
+      <h2>Search</h2>
+        <input
+          type="search"
+          placeholder="Search Posts"
+          onChange={handleChange}
+        />
+      {postsToDisplay.map((post) => (
         <div key={post._id} className="player-container">
           <h2>{post.title}</h2>
           <h3>{post.description}</h3>
