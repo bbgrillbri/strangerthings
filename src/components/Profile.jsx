@@ -7,12 +7,13 @@ const Profile = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState("");
-  //const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     async function getUsersData() {
       const responce = await myData();
-      console.log("res", responce);
+      console.log("Messages", responce.data.messages);
+      console.log("Posts", responce.data.posts);
       if (responce.success) {
         setUserPosts(responce.data.posts);
         setMessages(responce.data.messages);
@@ -34,6 +35,11 @@ const Profile = () => {
             <h3>{post.description}</h3>
             <h3>{post.price}</h3>
             <h3>{post.author.username}</h3>
+            {post.messages.map((message) => (
+            <div key={message._id}>
+              <h3>{message.content} {message.fromUser.username}</h3>
+            </div>
+          ))}
           </div>
         ))}
       <h1> Messages </h1>

@@ -14,13 +14,6 @@ const Posts = () => {
   return (
     <div>
       <Header />
-      {token ? 
-      <div>
-        <h1>LOGGED IN</h1>
-        <button onClick={handleClick}>Log Out</button>
-        <button onClick={() => navigate("/newpost")}>Add New Post</button>
-      </div>
-      : <h1>NOT LOGGED IN</h1>}
       <DisplayPosts />
     </div>
   );

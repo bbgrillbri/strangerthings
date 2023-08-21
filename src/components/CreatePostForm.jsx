@@ -14,7 +14,7 @@ const CreatePostForm = () => {
     e.preventDefault();
     const result = await makePost(title, description, price);
     console.log("Made Post", result);
-    navigate("/post");
+    navigate("/posts");
   }
 
   return (

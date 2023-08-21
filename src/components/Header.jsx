@@ -11,15 +11,15 @@ const Header = () => {
       <h1>Stranger Things</h1>
       {!token && (
         <div>
-          <Link to="/posts">POSTS</Link>
-          <Link to="/">LOGIN</Link>
+          <Link to="/">POSTS</Link>
+          <Link to="/login">LOGIN</Link>
         </div>
       )}
       {token && (
         <div>
-          <Link to="/posts">POSTS</Link>
+          <Link to="/">POSTS</Link>
           <Link to="/profile">PROFILE</Link>
-          <Link to="/" onClick={handleClick}>
+          <Link to="/login" onClick={handleClick}>
             LOG OUT
           </Link>
         </div>

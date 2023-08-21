@@ -18,23 +18,7 @@ const DisplayPosts = () => {
     getAllPosts();
   }, []);
 
-  async function handleMessage(postId) {
-    try {
-      const result = await postMessage(postId);
-      console.log("Message", result);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function handleDelete(postId) {
-    try {
-      const result = await deletePost(postId);
-      console.log("Delete", result);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -67,20 +51,9 @@ const DisplayPosts = () => {
           <h3>{post.description}</h3>
           <h3>{post.price}</h3>
           <h4>{post.author.username}</h4>
-          <h6>{post._id}</h6>
-          {token &&   (
-            <button onClick={() => navigate(`/post`)}> View Post</button>
-          )}
-          {token && post.isAuthor &&   (
-            <button onClick={() => navigate(`/${post._id}`)}>Test Edit</button>
-          )}
-          {token && post.isAuthor && (
-            <button onClick={() => handleDelete(post._id)}>Test Delete</button>
-          )}
-          {token && !post.isAuthor && (
-            <button onClick={() => handleMessage(post._id)}>
-              Test Message
-            </button>
+          
+          {token && (
+            <button onClick={() => navigate(`/${post._id}`)}> View Post</button>
           )}
         </div>
       ))}

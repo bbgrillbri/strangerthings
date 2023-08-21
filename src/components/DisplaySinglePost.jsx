@@ -1,20 +1,90 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { deletePost, fetchPosts, postMessage } from "../API/main";
+import { useParams } from "react-router-dom";
 import Header from "./Header";
+
 const DisplaySinglePost = () => {
-    const navigate = useNavigate();
+  const [post, setPost] = useState([]);
+  const [message, setMessage] = useState("");
+  const token = localStorage.getItem("token");
+  const { postId } = useParams();
+  const navigate = useNavigate();
 
-        return(
+  async function getAllPosts() {
+    const response = await fetchPosts();
+    const posts = response.data.posts;
+    const filteredPosts = posts.filter(post => {
+      return post._id.includes(postId);
+    });
+    setPost(filteredPosts);
+  }
+
+  useEffect(() => {
+    getAllPosts();
+  }, []);
+
+  async function handleMessage() {
+    try {
+      const result = await postMessage(postId, message);
+      getAllPosts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+ 
+  async function handleDelete(postId) {
+    try {
+      const result = await deletePost(postId);
+      console.log("Delete", result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return (
+    <div>
+      <Header />
+      {post.map((post) => (
+        <div key={post._id} className="player-container">
+          <h2>{post.title}</h2>
+          <h3>{post.description}</h3>
+          <h3>{post.price}</h3>
+          <h4>{post.author.username}</h4>
+
+          {token && post.isAuthor && (
+            <button onClick={() => navigate(`/${post._id}`)}>Test Edit</button>
+          )}
+          {token && post.isAuthor && (
+            <button onClick={() => handleDelete(post._id)}>Test Delete</button>
+          )}
+          {token && !post.isAuthor && (
             <div>
-                <Header />
-                <h1> Show Post </h1>
-                <h2>Show messages</h2>
-                <h2> if User is author show edit/delete buttons </h2>
-                <h2> not author show leave a message</h2>
-                <button onClick={() => navigate(`/posts`)}> Back to Posts</button>
+              <h3>Message</h3>
+              <form>
+                  <input
+                    value={message}
+                    type="text"
+                    name="message"
+                    placeholder="Message"
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+              </form>
+              <button onClick={() => handleMessage()}>
+                Submit
+              </button>
             </div>
-        )
-
-
+          )}
+          {post.messages.map((message) => (
+            <div key={message._id}>
+              <h3>{message.content} {message.fromUser.username}</h3>
+            </div>
+          ))}
+        </div>
+      ))}
+      <button onClick={() => navigate(`/`)}> Back to Posts</button>
+    </div>
+  );
 }
 
 export default DisplaySinglePost;
