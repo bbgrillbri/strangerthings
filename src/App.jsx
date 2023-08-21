@@ -12,13 +12,12 @@ export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Posts />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
-        <Route path="/posts" element={<Posts />} />
-        <Route path="/post" element={<DisplaySinglePost />} />
+        <Route path="/:postId" element={<DisplaySinglePost />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/newpost" element={<CreatePostForm />} />
-        <Route path="/:postId" element={<EditPostForm />} />
       </Routes>
     </div>
   );

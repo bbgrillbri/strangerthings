@@ -1,9 +1,7 @@
 const COHORT_NAME = "2302-ACC-CT-WEB-PT-A";
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
-const url =
-  "https://strangers-things.herokuapp.com/api/2302-ACC-CT-WEB-PT-A/test/me";
 
-const token = localStorage.getItem("token");
+//const token = localStorage.getItem("token");
 
 //Register User
 export const registerUser = async (username, password) => {
@@ -55,6 +53,7 @@ export const login = async (username, password) => {
 
 // Get User Data
 export const myData = async () => {
+  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/users/me`, {
       headers: {
@@ -72,6 +71,7 @@ export const myData = async () => {
 
 //fetch posts
 export const fetchPosts = async () => {
+  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/posts`, {
       headers: {
@@ -90,6 +90,7 @@ export const fetchPosts = async () => {
 
 // Create a post
 export const makePost = async (title, description, price) => {
+  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/posts`, {
       method: "POST",
@@ -116,6 +117,7 @@ export const makePost = async (title, description, price) => {
 
 //Edit Post
 export const updatePost = async (postId) => {
+  const token = localStorage.getItem("token");
   try {
     // You will need to insert a variable into the fetch template literal
     // in order to make the POST_ID dynamic.
@@ -145,6 +147,7 @@ export const updatePost = async (postId) => {
 };
 // Delete Post
 export const deletePost = async (postId) => {
+  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/posts/${postId}`, {
       method: "DELETE",
@@ -161,7 +164,8 @@ export const deletePost = async (postId) => {
 };
 
 // Post Message
-export const postMessage = async (postId) => {
+export const postMessage = async (postId, userMessage) => {
+  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
       method: "POST",
@@ -171,7 +175,7 @@ export const postMessage = async (postId) => {
       },
       body: JSON.stringify({
         message: {
-          content: "Do you still have this?"
+          content: userMessage
         }
       })
     });
