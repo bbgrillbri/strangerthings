@@ -12,9 +12,9 @@ const Login = () => {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (username.length < 1) {
+    if (username.length < 5) {
       alert("Your username must be at minimum 5 characters in length");
-    } else if (password.length < 1) {
+    } else if (password.length < 8) {
       alert("Your password must be at minimum 8 characters in length");
     } else {
       try {
