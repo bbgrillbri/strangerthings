@@ -6,10 +6,9 @@ import Header from "./Header";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  console.log("LOGIN TOKEN", token);
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,14 +18,11 @@ const Login = () => {
       alert("Your password must be at minimum 8 characters in length");
     } else {
       try {
-        console.log("name", username);
-        console.log("password", password);
         const result = await login(username, password);
-        console.log("Login", result);
         localStorage.setItem("token", result.data.token);
         navigate("/profile");
       } catch (error) {
-        setError(error.message);
+        setError("Username or Password is incorrect, please try again!");
       }
     }
   };
@@ -36,6 +32,7 @@ const Login = () => {
       <Header />
       <div className="container">
       <h2>Sign In</h2>
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label value={username} onChange={(e) => setUsername(e.target.value)}>
           Username: <input />
@@ -47,7 +44,7 @@ const Login = () => {
         <br></br>
         <button>Submit</button>
       </form>
-      <button onClick={() => navigate("/register")}>Sign UP</button>
+      <button onClick={() => navigate("/register")}>Sign Up</button>
       </div>
     </>
   );

@@ -22,53 +22,53 @@ const CreatePostForm = () => {
       <h1> Add New Post </h1>
       <form onSubmit={handleCreatePost}>
         <label> Title:
-        <input
-          value={title}
-          type="text"
-          name="title"
-          placeholder="title"
-          onChange={(e) => setTitle(e.target.value)}
-        />
+          <input
+            value={title}
+            type="text"
+            name="title"
+            placeholder="title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </label>
         <br></br>
         <label> Description:
-        <input
-          value={description}
-          type="text"
-          name="description"
-          placeholder="description"
-          onChange={(e) => setDescription(e.target.value)}
-        />
+          <input
+            value={description}
+            type="text"
+            name="description"
+            placeholder="description"
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </label>
         <br></br>
-        <label> Price: 
-        <input
-          value={price}
-          type="text"
-          name="price"
-          placeholder="price"
-          onChange={(e) => setPrice(e.target.value)}
-        />
+        <label> Price:
+          <input
+            value={price}
+            type="text"
+            name="price"
+            placeholder="price"
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </label>
         <br></br>
         <label> Loaction:
-        <input 
-          value={location}
-          type="text"
-          name="location"
-          placeholder="location"
-          onChange={(e) => setLocation(e.target.value)}
-        />
+          <input
+            value={location}
+            type="text"
+            name="location"
+            placeholder="location"
+            onChange={(e) => setLocation(e.target.value)}
+          />
         </label>
         <br></br>
         <label> Will Deliver:
-        <input
-          value={deliver}  
-          type="checkbox"
-          name="deliver" 
-          onChange={(e) => setDeliver(!deliver)} />
-          </label>
-          <br></br>
+          <input
+            value={deliver}
+            type="checkbox"
+            name="deliver"
+            onChange={(e) => setDeliver(!deliver)} />
+        </label>
+        <br></br>
         <button>Submit</button>
       </form>
     </div>

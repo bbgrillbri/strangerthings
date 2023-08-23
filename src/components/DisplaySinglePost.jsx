@@ -32,11 +32,10 @@ const DisplaySinglePost = () => {
       console.error(error);
     }
   }
- 
+
   async function handleDelete(postId) {
     try {
       const result = await deletePost(postId);
-      console.log("Delete", result);
     } catch (error) {
       console.error(error);
     }
@@ -55,22 +54,19 @@ const DisplaySinglePost = () => {
           <h3>Will Deliver: {post.willDeliver ? "Yes" : "No"}</h3>
 
           {token && post.isAuthor && (
-            <button onClick={() => navigate(`/${post._id}`)}>Test Edit</button>
-          )}
-          {token && post.isAuthor && (
-            <button onClick={() => handleDelete(post._id)}>Test Delete</button>
+            <button onClick={() => handleDelete(post._id)}>Delete</button>
           )}
           {token && !post.isAuthor && (
             <div>
               <h3>Message</h3>
               <form>
-                  <input
-                    value={message}
-                    type="text"
-                    name="message"
-                    placeholder="Message"
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
+                <input
+                  value={message}
+                  type="text"
+                  name="message"
+                  placeholder="Message"
+                  onChange={(e) => setMessage(e.target.value)}
+                />
               </form>
               <button onClick={() => handleMessage()}>
                 Submit
