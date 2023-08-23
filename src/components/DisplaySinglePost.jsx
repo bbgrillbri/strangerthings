@@ -46,11 +46,13 @@ const DisplaySinglePost = () => {
     <div>
       <Header />
       {post.map((post) => (
-        <div key={post._id} className="player-container">
-          <h2>{post.title}</h2>
+        <div key={post._id} className="container">
+          <h1>{post.title}</h1>
+          <h4>Posted by: {post.author.username}</h4>
           <h3>{post.description}</h3>
-          <h3>{post.price}</h3>
-          <h4>{post.author.username}</h4>
+          <h3>Asking Price: {post.price}</h3>
+          <h3>Location: {post.location}</h3>
+          <h3>Will Deliver: {post.willDeliver ? "Yes" : "No"}</h3>
 
           {token && post.isAuthor && (
             <button onClick={() => navigate(`/${post._id}`)}>Test Edit</button>

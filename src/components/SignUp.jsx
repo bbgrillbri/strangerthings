@@ -33,6 +33,7 @@ const SignUp = () => {
   return (
     <>
       <Header />
+      <div className="container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label value={username} onChange={(e) => setUsername(e.target.value)}>
@@ -45,7 +46,7 @@ const SignUp = () => {
         <br></br>
         <button>Submit</button>
       </form>
-
+      </div>
     </>
   );
 };

@@ -6,21 +6,22 @@ const CreatePostForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  //const [location, setLocation] = useState("");
-  //const [deliver, setDeliver] = useState(false);
+  const [location, setLocation] = useState("");
+  const [deliver, setDeliver] = useState(false);
   const navigate = useNavigate();
 
   async function handleCreatePost(e) {
     e.preventDefault();
-    const result = await makePost(title, description, price);
+    const result = await makePost(title, description, price, location, deliver);
     console.log("Made Post", result);
-    navigate("/posts");
+    navigate("/");
   }
 
   return (
-    <div>
+    <div className="container">
       <h1> Add New Post </h1>
       <form onSubmit={handleCreatePost}>
+        <label> Title:
         <input
           value={title}
           type="text"
@@ -28,6 +29,9 @@ const CreatePostForm = () => {
           placeholder="title"
           onChange={(e) => setTitle(e.target.value)}
         />
+        </label>
+        <br></br>
+        <label> Description:
         <input
           value={description}
           type="text"
@@ -35,6 +39,9 @@ const CreatePostForm = () => {
           placeholder="description"
           onChange={(e) => setDescription(e.target.value)}
         />
+        </label>
+        <br></br>
+        <label> Price: 
         <input
           value={price}
           type="text"
@@ -42,6 +49,26 @@ const CreatePostForm = () => {
           placeholder="price"
           onChange={(e) => setPrice(e.target.value)}
         />
+        </label>
+        <br></br>
+        <label> Loaction:
+        <input 
+          value={location}
+          type="text"
+          name="location"
+          placeholder="location"
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        </label>
+        <br></br>
+        <label> Will Deliver:
+        <input
+          value={deliver}  
+          type="checkbox"
+          name="deliver" 
+          onChange={(e) => setDeliver(!deliver)} />
+          </label>
+          <br></br>
         <button>Submit</button>
       </form>
     </div>
