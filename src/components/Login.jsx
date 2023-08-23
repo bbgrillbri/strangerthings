@@ -34,6 +34,7 @@ const Login = () => {
   return (
     <>
       <Header />
+      <div className="container">
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
         <label value={username} onChange={(e) => setUsername(e.target.value)}>
@@ -47,6 +48,7 @@ const Login = () => {
         <button>Submit</button>
       </form>
       <button onClick={() => navigate("/register")}>Sign UP</button>
+      </div>
     </>
   );
 };

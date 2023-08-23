@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const token = localStorage.getItem("token");
+  
   const handleClick = () => {
     localStorage.removeItem("token", token);
   };
@@ -10,18 +11,25 @@ const Header = () => {
     <header>
       <h1>Stranger Things</h1>
       {!token && (
-        <div>
-          <Link to="/">POSTS</Link>
-          <Link to="/login">LOGIN</Link>
-        </div>
+        <nav>
+          <ul className="nav-links">
+          <li><Link to="/">POSTS</Link></li>
+          <li><Link to="/login">LOGIN</Link></li>
+          <li><Link to="/register">SIGN UP</Link></li>
+          </ul>
+        </nav>
       )}
       {token && (
         <div>
-          <Link to="/">POSTS</Link>
-          <Link to="/profile">PROFILE</Link>
-          <Link to="/login" onClick={handleClick}>
+          <nav>
+          <ul className="nav-links">
+          <li><Link to="/">POSTS</Link></li>
+          <li><Link to="/profile">PROFILE</Link></li>
+          <li><Link to="/login" onClick={handleClick}>
             LOG OUT
-          </Link>
+          </Link></li>
+          </ul>
+          </nav>
         </div>
       )}
     </header>

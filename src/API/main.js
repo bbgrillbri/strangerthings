@@ -89,7 +89,7 @@ export const fetchPosts = async () => {
 };
 
 // Create a post
-export const makePost = async (title, description, price) => {
+export const makePost = async (title, description, price, location, deliver) => {
   const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/posts`, {
@@ -103,8 +103,8 @@ export const makePost = async (title, description, price) => {
           title: title,
           description: description,
           price: price,
-          location: "New York, NY",
-          willDeliver: true
+          location: location,
+          willDeliver: deliver
         }
       })
     });
