@@ -47,7 +47,9 @@ const DisplayPosts = () => {
           placeholder="Search Posts"
           onChange={handleChange}
         />
-        <button className="btn" onClick={() => navigate(`/newpost`)}> Create a Post</button>
+        {token && (
+          <button className="btn" onClick={() => navigate(`/newpost`)}> Create a Post</button>
+        )}
       </div>
       {postsToDisplay.map((post) => (
         <div key={post._id} className="container">

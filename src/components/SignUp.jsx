@@ -6,14 +6,12 @@ import { registerUser } from "../API/main";
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  console.log("LOGIN TOKEN", token);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("username", username);
     if (username.length < 6) {
       alert("Your username must be at minimum 6 characters in length");
     } else if (password.length < 8) {
@@ -25,7 +23,7 @@ const SignUp = () => {
         const token = localStorage.getItem("token");
         navigate("/profile");
       } catch (error) {
-        setError(error.message);
+        setError("User already exists, please login instead!");
       }
     }
   };
@@ -35,6 +33,7 @@ const SignUp = () => {
       <Header />
       <div className="container">
       <h2>Sign Up</h2>
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label value={username} onChange={(e) => setUsername(e.target.value)}>
           Username: <input />
@@ -46,6 +45,7 @@ const SignUp = () => {
         <br></br>
         <button>Submit</button>
       </form>
+      <button onClick={() => navigate("/login")}>Log In</button>
       </div>
     </>
   );
