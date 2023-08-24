@@ -39,7 +39,7 @@ const DisplayPosts = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="main-container">
         <h1>Welcome to Stranger Things!</h1>
         <h2>Search</h2>
         <input
@@ -47,6 +47,7 @@ const DisplayPosts = () => {
           placeholder="Search Posts"
           onChange={handleChange}
         />
+        <br></br>
         {token && (
           <button className="btn" onClick={() => navigate(`/newpost`)}> Create a Post</button>
         )}

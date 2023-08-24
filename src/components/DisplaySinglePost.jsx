@@ -44,6 +44,7 @@ const DisplaySinglePost = () => {
   return (
     <div>
       <Header />
+      <div className="main-container">
       {post.map((post) => (
         <div key={post._id} className="container">
           <h1>{post.title}</h1>
@@ -81,6 +82,7 @@ const DisplaySinglePost = () => {
         </div>
       ))}
       <button onClick={() => navigate(`/`)}> Back to Posts</button>
+      </div>
     </div>
   );
 }

@@ -24,6 +24,7 @@ const Profile = () => {
   return (
     <div>
       <Header />
+      <div className="main-container">
       <h1> Hello {user} </h1>
       <h1> My Posts </h1>
       {userPosts.length === 0 && <h2>You have not posted anything!</h2>}
@@ -53,6 +54,7 @@ const Profile = () => {
               <h3>Your Message: {message.content}</h3>
             </div>
           )))}
+          </div>
     </div>
   );
 };

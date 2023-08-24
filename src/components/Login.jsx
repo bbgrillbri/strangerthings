@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className="container center">
       <h2>Sign In</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>

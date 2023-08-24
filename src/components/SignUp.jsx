@@ -31,7 +31,7 @@ const SignUp = () => {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className="center">
       <h2>Sign Up</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
